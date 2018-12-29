@@ -1,0 +1,278 @@
+package notepad;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+import java.io.*;
+public class MyNotepad implements ActionListener, MouseMotionListener{
+       JFrame f,f2;
+       JTextArea ta,lb5;
+       JMenuBar mb;
+       JMenu m1,m2,m3,m4,m5;
+       JMenuItem mi1,mi2,mi3,mi4,mi5,mi6,mi7,mi8,mi9,mi10,mi11,mi12;
+       JComboBox cb1,cb2,cb3;
+       Font f1,f3,f4;
+       String str,str1,str2,s1;
+       int i,j,i1,j1;
+       JLabel l,lb1,lb2,lb3,lb4;
+       MyNotepad()
+       {
+    	   str = "This Notepad contains various features that allows change in font style, color and size."
+       	  		+ "It allows themes which allows to have various background colors."
+       	  		+ "It also exactly points out the current mouse pointer location which is a very important feature."
+       	  		+ "It has a seperate tool for word count and character counts."
+       	  		+ "It allows the wordrap feature with various shortcut keys and direct exit option."
+       	  		+ "It writes file and save it in format supported by other notepads also."
+       	  		+ "This notepad has a wonderful color combination which itself is very unique."
+       	  		+ "This notepad is developed in December 2018 in java language by a developer Ashutosh Chitranshi. ";
+    	   str1 = "This color pad is provided to change the color of background and foreground text."
+    	   		+ "This color pad can produce a combination of more than 65000 colors"
+    	   		+ "which is very useful for various purposes specially teaching and for kids"
+    	   		+ "The use of colorpad is very easy and can be choosen any color apearing there in front"
+    	   		+ "and also forminf new colors.This colorpad is java colorpad and not a seprately developed colorpad. ";
+    	   f = new JFrame("Notepad-Ashutosh");
+    	   f2 =new JFrame("Font Chooser");
+    	   String fonts[] = {"Arial","Arial Black","Bahnschrift","Bahnschrift Light", "Bahnschrift SemiBold",
+                         "Bahnschrift SemiLight", "Calibri", "Calibri Light", "Cambria", "Cambria Math",
+                         "Candara", "Comic Sans MS", "Consolas", "Constantia", "Corbel", "Courier New",
+                         "Dubai", "Dubai Light", "Dubai Medium", "Ebrima"}; 
+    	   String i[] = {"2","4","6","8","10","12","14","16","18","20","22","24","26","28","30","32",
+    			   "34","36","38","40","42","44","46","48","50","52","54","56","58","60"};
+    	   String j[] = {"0","1","2","3"};
+    	   cb1 = new JComboBox(fonts);
+    	   cb2 = new JComboBox(j);
+    	   cb3 = new JComboBox(i);
+    	   f2.setLayout(null);
+    	   f.setLayout(null);
+    	   ta = new JTextArea();
+    	   l = new JLabel("0,0");
+    	   lb1 = new JLabel("");
+    	   lb2 = new JLabel("Words:");
+    	   lb3 = new JLabel();
+    	   lb4 = new JLabel("Characters:");
+    	   mb = new JMenuBar();
+    	   m1 = new JMenu("File");
+    	   m2 = new JMenu("Tools");
+    	   m3 = new JMenu("Format");
+    	   m4 = new JMenu("View");
+    	   m5 = new JMenu("Help");
+    	   mi1 = new JMenuItem("New");
+    	   mi2 = new JMenuItem("Open");
+    	   mi3 = new JMenuItem("Word Count");
+    	   mi4 = new JMenuItem("Save As...");
+    	   mi5 = new JMenuItem("Exit");
+    	   mi6 = new JMenuItem("Font Color");
+    	   mi7 = new JMenuItem("Background Color");
+    	   mi8 = new JMenuItem("Font");
+    	   mi9 = new JMenuItem("Pointer Label");
+    	   mi10 = new JMenuItem("About Notepad");
+    	   mi11 = new JMenuItem("About Colorpad");
+    	   mi12 = new JMenuItem("Wordwrap");
+    	   mi1.addActionListener(this);
+    	   mi2.addActionListener(this);
+    	   mi3.addActionListener(this);
+    	   mi4.addActionListener(this);
+    	   mi5.addActionListener(this);
+    	   mi6.addActionListener(this);
+    	   mi7.addActionListener(this);
+    	   mi8.addActionListener(this);
+    	   mi9.addActionListener(this);
+    	   mi10.addActionListener(this);
+    	   mi11.addActionListener(this);
+    	   mi12.addActionListener(this);
+    	   f1 = new Font("Arial",0,16);
+    	   f3 = new Font("Arial",0,16);
+    	   mb.setBounds(0,1,1880,30);
+    	   l.setBounds(0,969,700,30);
+    	   lb1.setBounds(801,969,100,30);
+    	   lb2.setBounds(701,969,100,30);
+    	   lb4.setBounds(1600,969,100,30);
+    	   lb3.setBounds(1700,969,100,30);
+    	   ta.setBounds(0,31,1880,969);
+    	   cb1.setBounds(10,40,100,30);
+    	   cb2.setBounds(150,40,100,30);
+    	   cb3.setBounds(280,40,100,30);
+    	   mb.add(m1);
+    	   mb.add(m2);
+    	   mb.add(m3);
+    	   mb.add(m4);
+    	   mb.add(m5);
+    	   m1.add(mi1);
+    	   m1.add(mi2);
+    	   m2.add(mi3);
+    	   m1.add(mi4);
+    	   m1.add(mi5);
+    	   m2.add(mi6);
+    	   m2.add(mi7);
+    	   m2.add(mi8);
+    	   m4.add(mi9);
+    	   m5.add(mi10);
+    	   m5.add(mi11);
+    	   m3.add(mi12);
+    	   f.add(l);
+    	   f.add(lb1);
+    	   f.add(lb2);
+    	   f.add(lb4);
+    	   f.add(lb3);
+    	   f.add(ta);
+    	   f2.add(cb1);
+    	   f2.add(cb2);
+    	   f2.add(cb3);
+    	   m1.setFont(f1);
+    	   m2.setFont(f1);
+    	   m3.setFont(f1);
+    	   m4.setFont(f1);
+    	   m5.setFont(f1);
+    	   mi1.setFont(f1);
+    	   mi2.setFont(f1);
+    	   mi3.setFont(f1);
+    	   mi4.setFont(f1);
+    	   mi5.setFont(f1);
+    	   mi6.setFont(f1);
+    	   mi7.setFont(f1);
+    	   mi8.setFont(f1);
+    	   mi9.setFont(f1);
+    	   mi10.setFont(f1);
+    	   mi11.setFont(f1);
+    	   mi12.setFont(f1);
+    	   l.setFont(f1);
+    	   lb1.setFont(f1);
+    	   lb2.setFont(f1);
+    	   lb4.setFont(f1);
+    	   lb3.setFont(f1);
+    	   ta.setFont(f3);
+    	   cb1.setFont(f1);
+    	   cb3.setFont(f1);
+    	   cb2.setFont(f1);
+    	   f.add(mb);
+    	   f.setBackground(Color.BLUE);
+    	   f.setResizable(false);
+    	   f.setVisible(true);
+    	   f.setSize(1880,1030);
+    	   f2.setResizable(false);
+    	   f2.setSize(700,700);
+       }
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource()==mi8)
+		{
+			f2.setVisible(true);
+			s1 = (String)cb1.getItemAt(cb1.getSelectedIndex());
+			i1 = (int)cb2.getItemAt(cb2.getSelectedIndex());
+			j1 = (int)cb3.getItemAt(cb3.getSelectedIndex());
+			f4 = new Font(s1,i1,j1);
+			ta.setFont(f4);
+		}
+		if(e.getSource()==mi1)
+		{
+				MyNotepad z1 = new MyNotepad();
+		}
+		if(e.getSource()==mi9)
+		{
+			 f.addMouseMotionListener(this);
+		}
+		if(e.getSource()==mi10)
+		{
+		   f2 = new JFrame("About Notepad");
+		   lb5 = new JTextArea();
+		   lb5.setText(str);
+		   lb5.setLineWrap(true);
+		   lb5.setWrapStyleWord(true);
+		   lb5.setFont(f1);
+		   f2.add(lb5);
+		   f2.setResizable(false);
+		   f2.setVisible(true);
+		   f2.setSize(400, 400);
+		}
+		if(e.getSource()==mi11)
+		{
+		   f2 = new JFrame("About Colorpad");
+		   lb5 = new JTextArea();
+		   lb5.setText(str1);
+		   lb5.setLineWrap(true);
+		   lb5.setWrapStyleWord(true);
+		   lb5.setFont(f1);
+		   f2.add(lb5);
+		   f2.setResizable(false);
+		   f2.setVisible(true);
+		   f2.setSize(400, 400);
+		}
+		if(e.getSource()==mi3)
+		{ 
+		        String text=ta.getText();    
+		        String words[]=text.split("\\s");  
+		        lb1.setText(""+words.length);
+		        lb3.setText(""+text.length()); 
+		}
+		if(e.getSource()==mi12)
+		{
+			ta.setLineWrap(true);
+			ta.setWrapStyleWord(true);
+		}
+		if(e.getSource()==mi5)
+		{
+			f.dispose();
+		}
+		if(e.getSource()==mi6)
+		{
+			Color c=JColorChooser.showDialog(mi6,"Choose Color",Color.BLACK);  
+	        ta.setForeground(c);  
+		}
+		if(e.getSource()==mi7)
+		{
+			Color c=JColorChooser.showDialog(mi7,"Choose Color",Color.BLACK);  
+	        ta.setBackground(c);  
+		}
+		if(e.getSource()==mi4)
+		{
+		try
+		{
+		JFileChooser jc=new JFileChooser();
+		jc.showSaveDialog(null);
+		PrintWriter out=new PrintWriter(new FileWriter(jc.getSelectedFile()));
+		out.println(ta.getText());
+		out.flush();
+		out.close();
+		f.setTitle(jc.getSelectedFile().getName());
+
+		}
+		catch(Exception e1)
+		{
+		JOptionPane.showMessageDialog(null,e1.getMessage());
+		}
+		}
+		if(e.getSource()==mi2)
+		{
+		try
+		{
+		JFileChooser jc=new JFileChooser();
+		jc.showOpenDialog(null);
+		BufferedReader br=new BufferedReader(new FileReader(jc.getSelectedFile()));
+		ta.setText("");
+		String str;
+		while((str=br.readLine())!=null)
+		ta.append(str+"\n");
+
+		f.setTitle(jc.getSelectedFile().getName());
+
+		}
+		catch(Exception e1)
+		{
+		JOptionPane.showMessageDialog(null,e1.getMessage());
+		}
+
+		}
+	}
+	public static void main(String ar[])
+	{
+		MyNotepad z = new MyNotepad();
+	}
+	@Override
+	public void mouseDragged(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void mouseMoved(MouseEvent e) {
+		String str2 = e.getX()+","+e.getY();
+   	 l.setText(str2);
+	}
+}
